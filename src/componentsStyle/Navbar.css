@@ -134,8 +134,9 @@
     .navbar-notification,
     .navbar-avatar,
     .navbar-menu-button {
-        width: 40px;
-        height: 40px;
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
     }
 
     .navbar-right {
