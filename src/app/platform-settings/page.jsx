@@ -71,20 +71,16 @@ const page = () => {
                     </div> 
 
                     <div className="mb-4">
-
                         <label className="form-label fw-semibold">
                             Platform commission
                         </label>
-
                         <input
                             type="text"
                             className="form-control rounded-3"
                             value="15%"
                             readOnly
                         />
-
                     </div>
- 
                     <div className="settingsToggle d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
                         <span className="fw-semibold">
                             Require certification for legal jobs
@@ -98,8 +94,6 @@ const page = () => {
                             />
                         </div>
                     </div>
- 
-
                     <button
                         type="button"
                         className="btn btn-primary fw-semibold px-3 py-2"
