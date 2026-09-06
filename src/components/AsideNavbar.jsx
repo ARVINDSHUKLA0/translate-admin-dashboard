@@ -89,7 +89,7 @@ const AsideNavbar = ({
             <div className="d-flex align-items-center justify-content-between mb-lg-3 mb-3">
 
                 <span className="fs-24 fw-bold">
-                    translate co
+                   <Link className='text-decoration-none text-white' href="/"> translate co</Link>
                 </span>
 
                 <span className="admin-badge">
