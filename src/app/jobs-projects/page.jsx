@@ -3,6 +3,13 @@
 import React, { useState } from 'react'
 import './jobsProjects.css'
 
+const tabs = [
+    'All',
+    'In progress',
+    'In review',
+    'Disputed'
+]
+
 const projects = [
     {
         project: 'Product Launch Deck',
@@ -10,8 +17,8 @@ const projects = [
         translator: 'Elena Vidal',
         value: '$161.20',
         status: 'IN PROGRESS',
-        due: 'Aug 27',
-        type: 'progress',
+        statusType: 'inProgress',
+        due: 'Aug 27'
     },
     {
         project: 'Vendor Contract',
@@ -19,8 +26,8 @@ const projects = [
         translator: 'Jonas Richter',
         value: '$500.50',
         status: 'IN REVIEW',
-        due: 'Aug 26',
-        type: 'review',
+        statusType: 'inReview',
+        due: 'Aug 26'
     },
     {
         project: 'User Manual',
@@ -28,8 +35,8 @@ const projects = [
         translator: 'Rafael Santos',
         value: '$392.60',
         status: 'DISPUTED',
-        due: 'Aug 24',
-        type: 'disputed',
+        statusType: 'disputed',
+        due: 'Aug 24'
     },
     {
         project: 'Support Docs',
@@ -37,68 +44,49 @@ const projects = [
         translator: 'Wei Zhang',
         value: '$210.00',
         status: 'DELIVERED',
-        due: 'Aug 25',
-        type: 'delivered',
-    },
-]
-
-const tabs = [
-    'All',
-    'In progress',
-    'In review',
-    'Disputed',
+        statusType: 'delivered',
+        due: 'Aug 25'
+    }
 ]
 
 const page = () => {
 
     const [activeTab, setActiveTab] = useState('All')
 
-    const filteredProjects =
-        activeTab === 'All'
-            ? projects
-            : projects.filter((item) => {
+    const filteredProjects = projects.filter((item) => {
 
-                if (activeTab === 'In progress') {
-                    return item.type === 'progress'
-                }
+        if (activeTab === 'All') {
+            return true
+        }
 
-                if (activeTab === 'In review') {
-                    return item.type === 'review'
-                }
+        if (activeTab === 'In progress') {
+            return item.statusType === 'inProgress'
+        }
 
-                if (activeTab === 'Disputed') {
-                    return item.type === 'disputed'
-                }
+        if (activeTab === 'In review') {
+            return item.statusType === 'inReview'
+        }
 
-                return true
-            })
+        if (activeTab === 'Disputed') {
+            return item.statusType === 'disputed'
+        }
+
+        return true
+    })
 
     return (
-        <div>
-
-            {/* HEADER */}
-
+        <div> 
             <div className="mb-4">
-
-                <h1 className="fw-bold mb-1">
+                <h4 className="fw-bold mb-1 mb-2">
                     Jobs &amp; projects
-                </h1>
-
-                <p className="text-secondary mb-0">
+                </h4>
+                <p className="text-secondary mb-0 fs-14">
                     642 jobs currently in progress.
                 </p>
-
             </div>
-
-
-            {/* TABS */}
-
             <div className="d-flex mb-4">
-
-                <div className="d-flex flex-wrap p-1 border rounded-3">
-
+               <div className="d-flex flex-wrap gap-0 gap-sm-1 p-0 p-sm-1 py-2 px-2 border rounded-3">
                     {tabs.map((tab) => (
-
                         <button
                             type="button"
                             key={tab}
@@ -113,49 +101,44 @@ const page = () => {
                         </button>
 
                     ))}
-
                 </div>
-
-            </div>
-
-
-            {/* PROJECT TABLE */}
-
+            </div> 
             <div className="card border rounded-4 shadow-sm">
-
                 <div className="card-body p-0">
-
                     <div className="table-responsive">
-
-                        <table className="table align-middle mb-0 projectsTable">
-
+                        <table className="table align-middle mb-0 jobsTable">
                             <thead>
+                                <tr className='fs-14'>
+                                    <th>
+                                        PROJECT
+                                    </th>
 
-                                <tr>
+                                    <th>
+                                        CLIENT
+                                    </th>
 
-                                    <th>PROJECT</th>
+                                    <th>
+                                        TRANSLATOR
+                                    </th>
 
-                                    <th>CLIENT</th>
+                                    <th>
+                                        VALUE
+                                    </th>
 
-                                    <th>TRANSLATOR</th>
+                                    <th>
+                                        STATUS
+                                    </th>
 
-                                    <th>VALUE</th>
-
-                                    <th>STATUS</th>
-
-                                    <th>DUE</th>
-
+                                    <th>
+                                        DUE
+                                    </th>
                                 </tr>
-
                             </thead>
 
-
-                            <tbody>
+                            <tbody className='fs-14'>
 
                                 {filteredProjects.map((item) => (
-
                                     <tr key={item.project}>
-
                                         <td className="fw-medium">
                                             {item.project}
                                         </td>
@@ -171,11 +154,10 @@ const page = () => {
                                         <td>
                                             {item.value}
                                         </td>
-
                                         <td>
 
                                             <span
-                                                className={`projectStatus ${item.type}`}
+                                                className={`jobStatus ${item.statusType}`}
                                             >
                                                 {item.status}
                                             </span>

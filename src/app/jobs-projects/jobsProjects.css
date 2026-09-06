@@ -1,26 +1,28 @@
-.projectsTable {
-    min-width: 850px;
+.jobsTable {
+    min-width: 900px;
 }
 
-.projectsTable th {
+.jobsTable th {
     padding: 14px 12px;
     color: var(--color-muted);
     font-size: 13px;
     font-weight: 600;
     border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
 }
 
-.projectsTable td {
+.jobsTable td {
     padding: 15px 12px;
     color: var(--color-text);
     border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
 }
 
-.projectsTable tbody tr:last-child td {
+.jobsTable tbody tr:last-child td {
     border-bottom: 0;
 }
 
-.projectStatus {
+.jobStatus {
     display: inline-block;
     padding: 5px 11px;
     border-radius: 20px;
@@ -29,12 +31,12 @@
     white-space: nowrap;
 }
 
-.progress {
+.inProgress {
     color: var(--color-primary);
     background: var(--color-primary-light);
 }
 
-.review {
+.inReview {
     color: var(--color-warning);
     background: var(--color-warning-bg);
 }
@@ -51,12 +53,12 @@
 
 @media (max-width: 767px) {
 
-    .projectsTable {
-        min-width: 750px;
+    .jobsTable {
+        min-width: 800px;
     }
 
-    .projectsTable th,
-    .projectsTable td {
+    .jobsTable th,
+    .jobsTable td {
         padding: 12px 10px;
     }
 
@@ -64,15 +66,15 @@
 
 @media (max-width: 575px) {
 
-    .projectsTable {
-        min-width: 700px;
+    .jobsTable {
+        min-width: 750px;
     }
 
-    .projectsTable th {
+    .jobsTable th {
         font-size: 11px;
     }
 
-    .projectsTable td {
+    .jobsTable td {
         font-size: 13px;
     }
 
