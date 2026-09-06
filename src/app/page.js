@@ -362,7 +362,7 @@ export default function Home() {
                 <small className="text-secondary">
                   42 translators awaiting payout this cycle
                 </small>
-                <button className="btn btn-warning w-100 mt-2 fw-bold">
+                <button className={`btn w-100 mt-2 fw-bold ${styles.hoverBtn}`}>
                   Approve all payouts
                 </button>
 

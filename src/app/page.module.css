@@ -33,12 +33,15 @@
     color: var(--color-danger);
     background: var(--color-danger-bg);
 }
-
+ 
 .chart {
     height: 145px;
     display: flex;
     align-items: flex-end;
     gap: 9px;
+}
+.hoverBtn:hover{
+    background-color: red;
 }
 
 .barItem {
@@ -139,4 +142,12 @@
     flex-shrink: 0;
 }
 
+.hoverBtn{
+    background-color:#D97706 ;
+}
 
+.hoverBtn:hover {
+    background-color: #d97706cb !important;
+    border-color: #D97706 !important;
+    color: #ffffff !important;
+}
