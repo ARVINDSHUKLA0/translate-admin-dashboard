@@ -99,10 +99,6 @@ const page = () => {
                 </div>
 
             </div>
-
-
-            {/* TABLE */}
-
             <div className="card border rounded-4 shadow-sm">
 
                 <div className="card-body p-0">
@@ -141,26 +137,15 @@ const page = () => {
                                 </tr>
 
                             </thead>
-
-
                             <tbody>
-
                                 {users.map((user) => (
-
                                     <tr key={user.email}>
-
-                                        {/* USER */}
-
                                         <td className='fs-14'>
-
                                             <div className="d-flex align-items-center gap-2">
-
                                                 <div className="userAvatar">
                                                     {user.initials}
                                                 </div>
-
                                                 <div>
-
                                                     <div className="fw-semibold">
                                                         {user.name}
                                                     </div>
@@ -173,13 +158,8 @@ const page = () => {
 
                                             </div>
 
-                                        </td>
-
-
-                                        {/* STATUS */}
-
+                                        </td> 
                                         <td>
-
                                             <span
                                                 className={
                                                     user.status === 'ACTIVE'
@@ -190,41 +170,25 @@ const page = () => {
                                                 {user.status}
                                             </span>
 
-                                        </td>
-
-
-                                        {/* JOINED */}
-
+                                        </td> 
                                         <td className='fs-14'>
                                             {user.joined}
                                         </td>
-
-
-                                        {/* JOBS */}
-
                                         <td className='fs-14'>
                                             {user.jobs}
                                         </td>
-
-
-                                        {/* RATING */}
 
                                         <td className='fs-14'>
                                             {user.rating}
                                         </td>
 
-
-                                        {/* VIEW */}
-
                                         <td className="text-end">
-
                                             <button
                                                 type="button"
                                                 className="btn btn-light border fs-14"
                                             >
                                                 View
                                             </button>
-
                                         </td>
 
                                     </tr>
