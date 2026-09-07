@@ -50,6 +50,14 @@
     color: var(--color-success);
     background: var(--color-success-bg);
 }
+.newJob{
+       color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+.cancelled {
+        color: var(--color-danger);
+    background: var(--color-danger-bg);
+}
 
 @media (max-width: 767px) {
 

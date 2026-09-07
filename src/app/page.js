@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './page.module.css'
 
 const stats = [
@@ -211,9 +212,11 @@ export default function Home() {
                       </small>
                     </div>
                   </div>
-                  <button className="btn btn-primary btn-sm">
-                    Review
-                  </button>
+                  <Link href="/verification-queue">
+                    <button className="btn btn-primary btn-sm">
+                      Review
+                    </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -229,9 +232,11 @@ export default function Home() {
                 <h6 className="fw-bold mb-0">
                   Recent users
                 </h6>
-                <button className="btn btn-link btn-sm text-primary text-decoration-none">
-                  Manage all →
-                </button>
+                <Link href="/users">
+                  <button className="btn btn-link btn-sm text-primary text-decoration-none">
+                    Manage all →
+                  </button>
+                </Link>
               </div>
               <div className="table-responsive">
                 <table className="table table-sm align-middle mb-0">
@@ -323,9 +328,11 @@ export default function Home() {
                   <h6 className="fw-bold mb-0">
                     Open disputes
                   </h6>
+                  <Link href="/disputes-support">
                   <button className="btn btn-link btn-sm text-primary text-decoration-none">
                     View all →
                   </button>
+                  </Link>
                 </div>
 
                 {disputes.map((item) => (
@@ -362,9 +369,11 @@ export default function Home() {
                 <small className="text-secondary">
                   42 translators awaiting payout this cycle
                 </small>
-                <button className={`btn w-100 mt-2 fw-bold ${styles.hoverBtn}`}>
-                  Approve all payouts
-                </button>
+                <Link href="/payments-payouts">
+                  <button className={`btn w-100 mt-2 fw-bold ${styles.hoverBtn}`}>
+                    Approve all payouts
+                  </button>
+                </Link>
 
               </div>
 

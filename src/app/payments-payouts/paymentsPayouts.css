@@ -1,4 +1,4 @@
-.payoutsApproveAll {
+  .payoutsApproveAll {
     color: black; 
     background-color: #FFCA2C;
     border: 0;
@@ -32,6 +32,9 @@
 .payoutsTable tbody tr:last-child td {
     border-bottom: 0;
 }
+ .payoutsPersonButtons{
+    width: max-content;
+ }
 
 @media (max-width: 575px) {
 
@@ -53,4 +56,37 @@
         font-size: 13px;
     }
 
+}  
+ 
+.payoutsPersonBtn {
+    border: 1px solid var(--color-border);
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
 }
+
+.payoutsPersonBtn.active {
+    color: var(--color-text);
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.payoutsPersonBtn:hover {
+    color: var(--color-text);
+} 
+
+@media (max-width: 575px) {
+
+    .payoutsPersonButtons {
+        gap: 6px;
+    }
+
+    .payoutsPersonBtn {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+}  

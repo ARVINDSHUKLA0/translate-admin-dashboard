@@ -1,6 +1,8 @@
+
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState } from 'react' 
+import { useRouter } from 'next/navigation'
 import './user.css'
 
 const users = [
@@ -8,6 +10,7 @@ const users = [
         name: 'Elena Vidal',
         email: 'elena.vidal@mail.com',
         initials: 'EV',
+        role: 'Translators',
         status: 'ACTIVE',
         joined: 'Mar 2024',
         jobs: '340',
@@ -17,6 +20,7 @@ const users = [
         name: 'Rafael Santos',
         email: 'r.santos@mail.com',
         initials: 'RS',
+        role: 'Translators',
         status: 'SUSPENDED',
         joined: 'Jan 2024',
         jobs: '210',
@@ -26,6 +30,7 @@ const users = [
         name: 'Wei Zhang',
         email: 'wei.zhang@mail.com',
         initials: 'WZ',
+        role: 'Translators',
         status: 'ACTIVE',
         joined: 'Nov 2023',
         jobs: '185',
@@ -35,8 +40,19 @@ const users = [
         name: 'Camille Roux',
         email: 'c.roux@mail.com',
         initials: 'CR',
+        role: 'Clients',
         status: 'ACTIVE',
         joined: 'Jul 2024',
+        jobs: '98',
+        rating: '4.7★',
+    },
+    {
+        name: 'Camille ',
+        email: 'c.roux@ma.com',
+        initials: 'CR',
+        role: 'Clients',
+        status: 'ACTIVE',
+        joined: 'Jul 2424',
         jobs: '98',
         rating: '4.7★',
     },
@@ -54,12 +70,18 @@ const tabs = [
 ]
 
 const page = () => {
-
+    const router = useRouter()
     const [activeTab, setActiveTab] = useState('Clients')
+    const [openAction, setOpenAction] = useState(null)
+    const filteredUsers = users.filter(
+        (user) => user.role === activeTab
+    )
 
     return (
         <div>
+
             <div className="mb-4">
+
                 <h4 className="fw-bold mb-1">
                     Users
                 </h4>
@@ -70,18 +92,21 @@ const page = () => {
 
             </div>
 
+
             <div className="d-flex flex-wrap mb-4">
+
                 <div className="d-flex flex-wrap p-1 border rounded-3 w-100 w-sm-auto">
+
                     {tabs.map((tab) => (
+
                         <button
                             type="button"
                             key={tab.label}
                             onClick={() => setActiveTab(tab.label)}
-                            className={`btn border-0 px-3 px-md-4 py-2 ${
-                                activeTab === tab.label
-                                    ? 'bg-white shadow-sm'
-                                    : 'text-secondary'
-                            }`}
+                            className={`btn border-0 px-3 px-md-4 py-2 ${activeTab === tab.label
+                                ? 'bg-white shadow-sm'
+                                : 'text-secondary'
+                                }`}
                         >
 
                             <span className="fw-semibold fs-14">
@@ -99,6 +124,8 @@ const page = () => {
                 </div>
 
             </div>
+
+
             <div className="card border rounded-4 shadow-sm">
 
                 <div className="card-body p-0">
@@ -111,24 +138,28 @@ const page = () => {
 
                                 <tr>
 
-                                    <th>
-                                        USER
+                                    <th className='text-uppercase'>
+                                        user
                                     </th>
 
-                                    <th>
-                                        STATUS
+                                    <th className='text-uppercase'>
+                                        status
                                     </th>
 
-                                    <th>
-                                        JOINED
+                                    <th className='text-uppercase'>
+                                        joined
                                     </th>
 
-                                    <th>
-                                        JOBS
+                                    <th className='text-uppercase'>
+                                        jobs
                                     </th>
 
-                                    <th>
-                                        RATING
+                                    <th className='text-uppercase'>
+                                        rating
+                                    </th>
+
+                                    <th className='text-uppercase'>
+                                        Action
                                     </th>
 
                                     <th className="text-end">
@@ -137,15 +168,24 @@ const page = () => {
                                 </tr>
 
                             </thead>
+
+
                             <tbody>
-                                {users.map((user) => (
+
+                                {filteredUsers.map((user) => (
+
                                     <tr key={user.email}>
+
                                         <td className='fs-14'>
-                                            <div className="d-flex align-items-center gap-2">
+
+                                            <div className="d-flex align-items-center ps-lg-4 gap-2">
+
                                                 <div className="userAvatar">
                                                     {user.initials}
                                                 </div>
+
                                                 <div>
+
                                                     <div className="fw-semibold">
                                                         {user.name}
                                                     </div>
@@ -158,8 +198,11 @@ const page = () => {
 
                                             </div>
 
-                                        </td> 
+                                        </td>
+
+
                                         <td>
+
                                             <span
                                                 className={
                                                     user.status === 'ACTIVE'
@@ -170,25 +213,96 @@ const page = () => {
                                                 {user.status}
                                             </span>
 
-                                        </td> 
+                                        </td>
+
+
                                         <td className='fs-14'>
                                             {user.joined}
                                         </td>
+
+
                                         <td className='fs-14'>
                                             {user.jobs}
                                         </td>
+
 
                                         <td className='fs-14'>
                                             {user.rating}
                                         </td>
 
-                                        <td className="text-end">
+
+                                        <td>
+
+                                            <div className="actionWrapper">
+
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-light border fs-14"
+                                                    onClick={() =>
+                                                        setOpenAction(
+                                                            openAction === user.email
+                                                                ? null
+                                                                : user.email
+                                                        )
+                                                    }
+                                                >
+                                                    Action
+
+                                                    <span className="ms-2">
+                                                        ▾
+                                                    </span>
+
+                                                </button>
+
+
+                                                {openAction === user.email && (
+
+                                                    <div className="actionDropdown">
+
+                                                        <button
+                                                            type="button"
+                                                            className="actionOption"
+                                                            onClick={() =>
+                                                                setOpenAction(null)
+                                                            }
+                                                        >
+                                                            ACTIVE
+                                                        </button>
+
+
+                                                        <button
+                                                            type="button"
+                                                            className="actionOption"
+                                                            onClick={() =>
+                                                                setOpenAction(null)
+                                                            }
+                                                        >
+                                                            SUSPENDED
+                                                        </button>
+
+                                                    </div>
+
+                                                )}
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <td>
+
                                             <button
                                                 type="button"
                                                 className="btn btn-light border fs-14"
+                                                onClick={() =>
+                                                    router.push(
+                                                        `/users/${encodeURIComponent(user.email)}`
+                                                    )
+                                                }
                                             >
                                                 View
                                             </button>
+
                                         </td>
 
                                     </tr>

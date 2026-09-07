@@ -57,6 +57,17 @@ const AsideNavbar = ({
                     icon: '🔎',
                     href: '/quality-control',
                 },
+                {
+                    label: 'Messages',
+                    icon: '💬',
+                    href: '/messages',
+                },
+                
+                {
+                    label: 'Help & Support',
+                    icon: '🚨',
+                    href: '/',
+                },
             ],
         },
         {
@@ -67,29 +78,23 @@ const AsideNavbar = ({
                     icon: '📈',
                     href: '/reports-analytics',
                 },
-                {
-                    label: 'Platform settings',
-                    icon: '⚙️',
-                    href: '/platform-settings',
-                },
             ],
         },
     ]
 
     return (
         <aside
-            className={`aside-navbar d-flex flex-column ${
-                isSidebarOpen
+            className={`aside-navbar d-flex flex-column ${isSidebarOpen
                     ? 'sidebar-open'
                     : 'sidebar-closed'
-            }`}
+                }`}
         >
 
             {/* LOGO */}
             <div className="d-flex align-items-center justify-content-between mb-lg-3 mb-3">
 
                 <span className="fs-24 fw-bold">
-                   <Link className='text-decoration-none text-white' href="/"> translate co</Link>
+                    <Link className='text-decoration-none text-white' href="/"> translate co</Link>
                 </span>
 
                 <span className="admin-badge">
@@ -98,7 +103,7 @@ const AsideNavbar = ({
 
             </div>
 
- 
+
             <nav className="aside-navigation flex-grow-1">
 
                 {navSections.map((section) => (
@@ -125,11 +130,10 @@ const AsideNavbar = ({
                                         href={item.href}
                                         key={item.label}
                                         onClick={closeSidebarOnPageClick}
-                                        className={`aside-nav-item d-flex align-items-center w-100 text-decoration-none ${
-                                            isActive
+                                        className={`aside-nav-item d-flex align-items-center w-100 text-decoration-none ${isActive
                                                 ? 'active'
                                                 : ''
-                                        }`}
+                                            }`}
                                     >
 
                                         <span className="aside-nav-icon">
