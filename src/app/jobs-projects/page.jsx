@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import './jobsProjects.css'
+import { useRouter } from 'next/navigation'
 
 const tabs = [
     'All',
@@ -98,6 +99,8 @@ const projects = [
 ]
 
 const page = () => {
+    const router = useRouter()
+
 
     const [activeTab, setActiveTab] = useState('All')
 
@@ -150,11 +153,10 @@ const page = () => {
                             type="button"
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`btn border-0 px-3 fs-13 px-md-4 py-2 my-1 mx-md-2 ${
-                                activeTab === tab
-                                    ? 'bg-white shadow-sm fw-semibold'
-                                    : 'text-secondary'
-                            }`}
+                            className={`btn border-0 px-3 fs-13 px-md-4 py-2 my-1 mx-md-2 ${activeTab === tab
+                                ? 'bg-white shadow-sm fw-semibold'
+                                : 'text-secondary'
+                                }`}
                         >
                             {tab}
                         </button>
@@ -175,7 +177,7 @@ const page = () => {
                             <thead>
                                 <tr className="fs-14">
 
-                                    <th className='text-uppercase'> 
+                                    <th className='text-uppercase'>
                                         project
                                     </th>
 
@@ -192,14 +194,14 @@ const page = () => {
                                     </th>
 
                                     <th className='text-uppercase'>
-                                     translate amount
+                                        translate amount
                                     </th>
 
-                                    <th className='text-uppercase'> 
+                                    <th className='text-uppercase'>
                                         status
                                     </th>
 
-                                    <th className='text-uppercase'> 
+                                    <th className='text-uppercase'>
                                         due
                                     </th>
                                     <th className='text-uppercase'>
@@ -247,7 +249,11 @@ const page = () => {
                                             {item.due}
                                         </td>
                                         <td>
-                                            <button type='button' className='btn btn-light border fs-14 text-capitalize'>View</button>
+                                            <button onClick={() =>
+                                                router.push(
+                                                    `/jobs-projects/${encodeURIComponent(item.project)}`
+                                                )
+                                            } type='button' className='btn btn-light border fs-14 text-capitalize'>View</button>
                                         </td>
 
                                     </tr>

@@ -19,63 +19,64 @@ const AsideNavbar = ({
             items: [
                 {
                     label: 'Overview',
-                    icon: '📊',
+                    icon: '<i class="fa-solid fa-chart-column"></i>',
                     href: '/',
                 },
             ],
         },
+
         {
             title: 'Operations',
             items: [
                 {
                     label: 'Users',
-                    icon: '👥',
+                    icon: '<i class="fa-solid fa-users"></i>',
                     href: '/users',
                 },
                 {
                     label: 'Verification queue',
-                    icon: '🛡️',
+                    icon: '<i class="fa-solid fa-shield-halved"></i>',
                     href: '/verification-queue',
                 },
                 {
                     label: 'Jobs & projects',
-                    icon: '📁',
+                    icon: '<i class="fa-solid fa-folder"></i>',
                     href: '/jobs-projects',
                 },
                 {
                     label: 'Payments & payouts',
-                    icon: '💳',
+                    icon: '<i class="fa-solid fa-credit-card"></i>',
                     href: '/payments-payouts',
                 },
                 {
                     label: 'Disputes & support',
-                    icon: '⚠️',
+                    icon: '<i class="fa-solid fa-triangle-exclamation"></i>',
                     href: '/disputes-support',
                 },
                 {
                     label: 'Quality control',
-                    icon: '🔎',
+                    icon: '<i class="fa-solid fa-magnifying-glass"></i>',
                     href: '/quality-control',
                 },
                 {
                     label: 'Messages',
-                    icon: '💬',
+                    icon: '<i class="fa-solid fa-message"></i>',
                     href: '/messages',
                 },
-                
                 {
                     label: 'Help & Support',
-                    icon: '🚨',
+                    icon: '<i class="fa-solid fa-circle-question"></i>',
                     href: '/',
                 },
             ],
         },
+
         {
             title: 'System',
             items: [
                 {
                     label: 'Reports & analytics',
-                    icon: '📈',
+                    icon: '<i class="fa-solid fa-chart-line"></i>',
                     href: '/reports-analytics',
                 },
             ],
@@ -84,17 +85,26 @@ const AsideNavbar = ({
 
     return (
         <aside
-            className={`aside-navbar d-flex flex-column ${isSidebarOpen
+            className={`aside-navbar d-flex flex-column ${
+                isSidebarOpen
                     ? 'sidebar-open'
                     : 'sidebar-closed'
-                }`}
+            }`}
         >
 
             {/* LOGO */}
+
             <div className="d-flex align-items-center justify-content-between mb-lg-3 mb-3">
 
                 <span className="fs-24 fw-bold">
-                    <Link className='text-decoration-none text-white' href="/"> translate co</Link>
+
+                    <Link
+                        className="text-decoration-none text-white"
+                        href="/"
+                    >
+                        translate co
+                    </Link>
+
                 </span>
 
                 <span className="admin-badge">
@@ -103,6 +113,8 @@ const AsideNavbar = ({
 
             </div>
 
+
+            {/* NAVIGATION */}
 
             <nav className="aside-navigation flex-grow-1">
 
@@ -130,15 +142,19 @@ const AsideNavbar = ({
                                         href={item.href}
                                         key={item.label}
                                         onClick={closeSidebarOnPageClick}
-                                        className={`aside-nav-item d-flex align-items-center w-100 text-decoration-none ${isActive
+                                        className={`aside-nav-item d-flex align-items-center w-100 text-decoration-none ${
+                                            isActive
                                                 ? 'active'
                                                 : ''
-                                            }`}
+                                        }`}
                                     >
 
-                                        <span className="aside-nav-icon">
-                                            {item.icon}
-                                        </span>
+                                        <span
+                                            className="aside-nav-icon"
+                                            dangerouslySetInnerHTML={{
+                                                __html: item.icon
+                                            }}
+                                        />
 
                                         <span className="aside-nav-label">
                                             {item.label}
@@ -159,6 +175,7 @@ const AsideNavbar = ({
 
 
             {/* PROFILE */}
+
             <div className="aside-profile d-flex align-items-center">
 
                 <div className="profile-avatar d-flex align-items-center justify-content-center">
@@ -183,9 +200,4 @@ const AsideNavbar = ({
     )
 }
 
-export default AsideNavbar
-
-
-
-
-
+export default AsideNavbar  
