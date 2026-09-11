@@ -1,93 +1,31 @@
-// 'use client'
-
-// import React, { useEffect, useState } from 'react'
-
-// import AsideNavbar from '@/components/AsideNavbar'
-// import Navbar from '@/components/Navbar'
-
-// const AdminShell = ({ children }) => {
-
-//     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-//     useEffect(() => {
-
-//         const handleResize = () => {
-
-//             if (window.innerWidth > 1024) {
-//                 setIsSidebarOpen(true)
-//             } else {
-//                 setIsSidebarOpen(false)
-//             }
-
-//         }
-
-//         handleResize()
-
-//         window.addEventListener('resize', handleResize)
-
-//         return () => {
-//             window.removeEventListener('resize', handleResize)
-//         }
-
-//     }, [])
-
-//     const toggleSidebar = () => {
-//         setIsSidebarOpen((prev) => !prev)
-//     }
-
-//     return (
-//         <div
-//             className={`admin-layout ${
-//                 isSidebarOpen
-//                     ? 'sidebar-open'
-//                     : 'sidebar-closed'
-//             }`}
-//         >
-
-//             <AsideNavbar
-//                 isSidebarOpen={isSidebarOpen}
-//             />
-
-//             <div className="admin-main">
-
-//                 <Navbar
-//                     toggleSidebar={toggleSidebar}
-//                     isSidebarOpen={isSidebarOpen}
-//                 />
-
-//                 <main className="admin-content">
-//                     {children}
-//                 </main>
-
-//             </div>
-
-//         </div>
-//     )
-// }
-
-// export default AdminShell
-
-
-
-
-
-
-
-
-
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 import AsideNavbar from '@/components/AsideNavbar'
 import Navbar from '@/components/Navbar'
 
 const AdminShell = ({ children }) => {
 
+    const pathname = usePathname()
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+    const publicPages = [
+        '/login',
+        '/forgot-password',
+    ]
+
+    const isPublicPage =
+        publicPages.includes(pathname)
 
 
     useEffect(() => {
+
+        if (isPublicPage) {
+            return
+        }
 
         const handleResize = () => {
 
@@ -113,17 +51,14 @@ const AdminShell = ({ children }) => {
             )
         }
 
-    }, [])
+    }, [isPublicPage])
 
 
-    // MENU BUTTON
     const toggleSidebar = () => {
-        setIsSidebarOpen((prev) => !prev)
+        setIsSidebarOpen(prev => !prev)
     }
 
 
-    // PAGE CLICK
-    // ONLY 0px - 1024px
     const closeSidebarOnPageClick = () => {
 
         if (window.innerWidth <= 1024) {
@@ -132,6 +67,20 @@ const AdminShell = ({ children }) => {
 
     }
 
+
+    /*
+     * LOGIN / FORGOT PASSWORD
+     * No sidebar and no loading spinner.
+     */
+
+    if (isPublicPage) {
+        return children
+    }
+
+
+    /*
+     * ADMIN PAGES
+     */
 
     return (
 
@@ -143,7 +92,6 @@ const AdminShell = ({ children }) => {
             }`}
         >
 
-            {/* SIDEBAR */}
             <AsideNavbar
                 isSidebarOpen={isSidebarOpen}
                 closeSidebarOnPageClick={
@@ -152,17 +100,14 @@ const AdminShell = ({ children }) => {
             />
 
 
-            {/* MAIN */}
             <div className="admin-main">
 
-                {/* NAVBAR */}
                 <Navbar
                     toggleSidebar={toggleSidebar}
                     isSidebarOpen={isSidebarOpen}
                 />
 
 
-                {/* PAGE */}
                 <main className="admin-content">
                     {children}
                 </main>
@@ -175,22 +120,3 @@ const AdminShell = ({ children }) => {
 }
 
 export default AdminShell
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
